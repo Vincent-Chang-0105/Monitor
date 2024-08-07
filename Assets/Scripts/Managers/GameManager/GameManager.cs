@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.evadeMiniGame);
+        UpdateGameState(GameState.HumanScene);
     }
 
     public void UpdateGameState(GameState newState)
