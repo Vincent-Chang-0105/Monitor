@@ -39,6 +39,8 @@ public class PhotoCapture : MonoBehaviour
     [Header("Task 2 Bounds")]
     [SerializeField] private Collider taskCollider2;
 
+    public Collider Player;
+
     private Texture2D screenCapture;
     private bool viewingPhoto;
     private int shotsRemaining;
@@ -133,21 +135,21 @@ public class PhotoCapture : MonoBehaviour
 
         if(IsPlayerInCollider(taskCollider1))
         {
+            Debug.Log("decipher 1");
             GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.decipherMiniGameCafe);
         }
+
         if (IsPlayerInCollider(taskCollider2))
         {
+            Debug.Log("decipher 2");
             GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.decipherMiniGameElson);
         }
     }
     private bool IsPlayerInCollider(Collider other)
     {
-        // Assuming the player has a Collider component
-        Collider playerCollider = GameObject.FindWithTag("Player").GetComponent<Collider>();
-
-        if (playerCollider != null)
+        if (Player != null)
         {
-            return other.bounds.Intersects(playerCollider.bounds);
+            return other.bounds.Intersects(Player.bounds);
         }
         return false;
     }

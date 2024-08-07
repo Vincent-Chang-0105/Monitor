@@ -18,6 +18,8 @@ MonoBehaviour:
   location: BlackThorns Alley
   description: title
   difficulty: '*'
-  questPrerequisites: []
-  questStepPrefabs: []
+  questPrerequisites:
+  - {fileID: 11400000, guid: b1a69b662b1501c478716a5fcafb6cdb, type: 2}
+  questStepPrefabs:
+  - {fileID: 402952145798505279, guid: 9df5a255d0677494eae8e331426e4266, type: 3}
   MoneyReward: 10

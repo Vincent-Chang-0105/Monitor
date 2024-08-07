@@ -43,6 +43,7 @@ public class CheckCode : MonoBehaviour
             if (currenttime < 0)
             {
                 currenttime = 0;
+                finished = true;
                 StartCoroutine(CloseWindowAfter2());
             }
         }

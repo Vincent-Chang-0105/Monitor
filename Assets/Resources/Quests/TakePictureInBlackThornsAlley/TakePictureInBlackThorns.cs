@@ -40,17 +40,14 @@ public class TakePictureInBlackThorns : QuestStep
 
     private void PictureTaken()
     {
-        if (taskCollider != null && IsPlayerInCollider())
+        if (picturesTook < picturesToTake)
         {
-            if (picturesTook < picturesToTake)
-            {
-                picturesTook++;
-            }
+            picturesTook++;
+        }
 
-            if (picturesTook >= picturesToTake)
-            {
-                FinishQuestStep();
-            }
+        if (picturesTook >= picturesToTake)
+        {
+            FinishQuestStep();
         }
     }
 

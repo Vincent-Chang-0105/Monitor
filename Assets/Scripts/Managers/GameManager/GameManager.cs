@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Camera humanCamera;
     [SerializeField] Camera robotCamera;
     [SerializeField] GameObject evadeCamera;
+    [SerializeField] GameObject decipher1;
+    [SerializeField] GameObject decipher2;
 
     [HideInInspector] public GameState state;
     private void Awake()
@@ -41,8 +43,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log("changed to RobotScene");
                 break;
             case GameState.decipherMiniGameCafe:
+                HandleDecipher1();
                 break;
             case GameState.decipherMiniGameElson:
+                HandleDecipher1();
                 break;
             case GameState.evadeMiniGame:
                 HandleEvadeMinigame();
@@ -76,6 +80,15 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
 
         evadeCamera.gameObject.SetActive(true);
+    }
+
+    private void HandleDecipher1()
+    {
+        decipher1.SetActive(true);
+    }
+    private void HandleDecipher2()
+    {
+        decipher1.SetActive(false);
     }
 }
 
