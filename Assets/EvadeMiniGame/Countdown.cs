@@ -3,7 +3,9 @@ using TMPro;
 
 public class Countdown : MonoBehaviour
 {
-    public TMP_Text timerText; // Reference to the TMP text element to display the timer
+    public TMP_Text timerText; // Reference to the TMP text element for displaying the timer
+    public TMP_Text winText; // Reference to the TMP text element for displaying the win message
+
     private float totalTime = 15f; // Total time for the timer in seconds
     private float timeLeft; // Time left on the timer
     private bool timerRunning = true; // Flag to control if the timer is running
@@ -11,6 +13,7 @@ public class Countdown : MonoBehaviour
     void Start()
     {
         timeLeft = totalTime;
+        winText.gameObject.SetActive(false); // Ensure win message is hidden initially
     }
 
     void Update()
@@ -26,11 +29,8 @@ public class Countdown : MonoBehaviour
                 timerRunning = false; // Stop the timer
                 Debug.Log("Timer has finished!");
 
-                // Stop the game (you may want to freeze gameplay or prevent further interaction)
-                Time.timeScale = 0f; // This stops time-based gameplay elements
-
-                // Example: Trigger game over screen, reset level, etc.
-                // HandleGameOver();
+                // Call the method to handle win condition
+                HandleWin();
             }
         }
     }
@@ -39,5 +39,18 @@ public class Countdown : MonoBehaviour
     {
         int seconds = Mathf.CeilToInt(timeLeft); // Round up to the nearest second
         timerText.text = seconds.ToString(); // Update the TMP text with the current time left
+    }
+
+    void HandleWin()
+    {
+        // Stop the game (you may want to freeze gameplay or prevent further interaction)
+        Time.timeScale = 0f; // This stops time-based gameplay elements
+
+        // Show win message
+        winText.text = "Congratulations! You have escaped!"; // Set win message text
+        winText.gameObject.SetActive(true); // Make win message visible
+
+        // Example: Trigger win screen, reset level, etc.
+        // ShowWinScreen();
     }
 }
