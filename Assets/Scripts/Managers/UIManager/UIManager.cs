@@ -50,6 +50,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI dayText;
 
     private bool isHuman;
+    private bool isEvadeMinigame;
 
     private void Start()
     {
@@ -76,13 +77,28 @@ public class UIManager : MonoBehaviour
 
     private void GameEvents_onStateChange(GameState state)
     {
-        isHuman = state == GameState.HumanScene || state == GameState.decipherMiniGameCafe || state == GameState.decipherMiniGameElson;
-
+        isHuman = state == GameState.HumanScene || state == GameState.decipherMiniGameCafe || state == GameState.decipherMiniGameElson || state == GameState.evadeMiniGame;
+        isEvadeMinigame = state == GameState.evadeMiniGame;
         SetActiveObject(GalleryButton, !isHuman);
         SetActiveObject(QuestionMarkButton, !isHuman);
         SetActiveObject(taskButton.gameObject, !isHuman);
         SetActiveObject(TaskBar, !isHuman);
         SetActiveObject(CameraUI, !isHuman);
+
+        if(isEvadeMinigame)
+        {
+            if(timerText.alpha == 1)
+            {
+                ToggleTimerTexts();
+            }
+        }
+        if(!isEvadeMinigame)
+        {
+            if(timerText.alpha == 0)
+            {
+                ToggleTimerTexts();
+            }
+        }
     }
 
     private void Update()

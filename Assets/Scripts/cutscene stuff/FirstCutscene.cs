@@ -66,12 +66,13 @@ public class FirstCutscene : MonoBehaviour
 
         yield return new WaitForSeconds(84f); // Wait for the next frame
 
+        videoPlayer.Stop();
         Debug.Log("Video finished playing");
         videoCanvas.SetActive(false);
-        tutorial.SetActive(true);
+        //tutorial.SetActive(true);
         // Re-enable player movement after the video finishes
-        GameEventsManager.Instance.playerEvents.EnablePlayerMovement();
-        GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.HumanScene);
+        //GameEventsManager.Instance.playerEvents.EnablePlayerMovement();
+        GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.evadeMiniGame);
         Debug.Log("Player movement enabled");
     }
 }

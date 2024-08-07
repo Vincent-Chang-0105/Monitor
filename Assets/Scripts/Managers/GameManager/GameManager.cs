@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [Header("Cameras")]
     [SerializeField] Camera humanCamera;
     [SerializeField] Camera robotCamera;
+    [SerializeField] GameObject evadeCamera;
 
     [HideInInspector] public GameState state;
     private void Awake()
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.HumanScene);
+        UpdateGameState(GameState.evadeMiniGame);
     }
 
     public void UpdateGameState(GameState newState)
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
             case GameState.decipherMiniGameElson:
                 break;
             case GameState.evadeMiniGame:
+                HandleEvadeMinigame();
                 break;
             default:
                 break;
@@ -55,12 +57,25 @@ public class GameManager : MonoBehaviour
     {
         humanCamera.gameObject.SetActive(true);
         robotCamera.gameObject.SetActive(false);
+        evadeCamera.gameObject.SetActive(false);
     }
 
     private void HandleSwitchToRobot()
     {
         robotCamera.gameObject.SetActive(true);
         humanCamera.gameObject.SetActive(false);
+        evadeCamera.gameObject.SetActive(false);
+    }
+
+    private void HandleEvadeMinigame()
+    {
+        robotCamera.gameObject.SetActive(false);
+        humanCamera.gameObject.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        evadeCamera.gameObject.SetActive(true);
     }
 }
 
