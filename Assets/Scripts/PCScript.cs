@@ -8,9 +8,6 @@ using UnityEngine.EventSystems;
 public class PCScript : MonoBehaviour
 {
     public GameObject UI;
-    public GameObject dialogueBox; // Assign the dialogue box GameObject in the Inspector
-
-    private bool hasDialogueShown = false; // Track if the dialogue has been shown
 
     void Start()
     {
@@ -50,19 +47,6 @@ public class PCScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         GameEventsManager.Instance.playerEvents.EnablePlayerMovement();
-
-        if (!hasDialogueShown)
-        {
-            // Show the dialogue box
-            dialogueBox.SetActive(true);
-            hasDialogueShown = true; // Mark the dialogue as shown
-        }
-        else
-        {
-            // Optionally, you can hide the dialogue box if it's already shown
-            dialogueBox.SetActive(false);
-        }
-
         GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.RobotScene);
     }
 }

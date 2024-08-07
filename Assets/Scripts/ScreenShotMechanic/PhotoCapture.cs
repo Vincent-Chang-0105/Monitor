@@ -36,6 +36,9 @@ public class PhotoCapture : MonoBehaviour
     [Header("Task 1 Bounds")]
     [SerializeField] private Collider taskCollider1;
 
+    [Header("Task 2 Bounds")]
+    [SerializeField] private Collider taskCollider2;
+
     private Texture2D screenCapture;
     private bool viewingPhoto;
     private int shotsRemaining;
@@ -128,20 +131,23 @@ public class PhotoCapture : MonoBehaviour
         wayPoints.SetActive(true);
         notifier.GetComponent<CanvasGroup>().alpha = 0f;
 
-        if(IsPlayerInCollider())
+        if(IsPlayerInCollider(taskCollider1))
         {
-            GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.decipherMiniGame);
+            GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.decipherMiniGameCafe);
         }
-
+        if (IsPlayerInCollider(taskCollider2))
+        {
+            GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.decipherMiniGameElson);
+        }
     }
-    private bool IsPlayerInCollider()
+    private bool IsPlayerInCollider(Collider other)
     {
         // Assuming the player has a Collider component
         Collider playerCollider = GameObject.FindWithTag("Player").GetComponent<Collider>();
 
         if (playerCollider != null)
         {
-            return taskCollider1.bounds.Intersects(playerCollider.bounds);
+            return other.bounds.Intersects(playerCollider.bounds);
         }
         return false;
     }

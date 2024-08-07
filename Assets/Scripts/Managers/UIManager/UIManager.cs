@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
 
     private void GameEvents_onStateChange(GameState state)
     {
-        isHuman = state == GameState.HumanScene || state == GameState.decipherMiniGame;
+        isHuman = state == GameState.HumanScene || state == GameState.decipherMiniGameCafe || state == GameState.decipherMiniGameElson;
 
         SetActiveObject(GalleryButton, !isHuman);
         SetActiveObject(QuestionMarkButton, !isHuman);

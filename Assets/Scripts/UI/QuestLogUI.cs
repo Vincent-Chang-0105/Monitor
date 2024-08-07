@@ -24,6 +24,10 @@ public class QuestLogUI : MonoBehaviour
     }
     private void QuestStateChange(Quest quest)
     {
+        if (quest.state == QuestState.REQUIREMENTS_NOT_MET)
+        {
+            //return;
+        }
         QuestLogButton questLogButton = scrollingList.CreateButtonIfNotExists(quest, () =>
         {
             SetQuestInfo(quest);

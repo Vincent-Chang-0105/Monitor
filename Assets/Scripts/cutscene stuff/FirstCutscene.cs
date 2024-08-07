@@ -6,6 +6,7 @@ public class FirstCutscene : MonoBehaviour
 {
     public VideoPlayer videoPlayer; // Reference to the VideoPlayer component
     public GameObject videoCanvas;  // Reference to the video canvas GameObject
+    public GameObject tutorial;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class FirstCutscene : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             videoCanvas.SetActive(true);
+            tutorial.SetActive(false);
             // Call a method to start the cutscene
             StartCoroutine(StartCutscene());
         }
@@ -34,12 +36,13 @@ public class FirstCutscene : MonoBehaviour
 
     private IEnumerator StartCutscene()
     {
+
         // Disable player movement
         GameEventsManager.Instance.playerEvents.DisablePlayerMovement();
         Debug.Log("Player movement disabled");
 
         // Activate the video canvas
-        videoCanvas.SetActive(true);
+        //videoCanvas.SetActive(true);
 
         Debug.Log("Video canvas activated");
 
@@ -65,7 +68,7 @@ public class FirstCutscene : MonoBehaviour
 
         Debug.Log("Video finished playing");
         videoCanvas.SetActive(false);
-
+        tutorial.SetActive(true);
         // Re-enable player movement after the video finishes
         GameEventsManager.Instance.playerEvents.EnablePlayerMovement();
         GameEventsManager.Instance.gameEvents.UpdateGameState(GameState.HumanScene);

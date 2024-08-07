@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: TakePictureInPark
   m_EditorClassIdentifier: 
   <id>k__BackingField: TakePictureInPark
-  displayName: Take a Picture in the Park!
+  displayName: Take Picture in Park!
   clientName: Tutorial
   location: Park
-  description: title lmao
+  description: title
   difficulty: '*'
   questPrerequisites: []
   questStepPrefabs:
   - {fileID: 8874122038243837753, guid: 766639058cf88084090ec042f65eba3b, type: 3}
-  MoneyReward: 100
+  MoneyReward: 5

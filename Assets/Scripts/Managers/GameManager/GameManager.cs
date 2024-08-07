@@ -39,7 +39,9 @@ public class GameManager : MonoBehaviour
                 HandleSwitchToRobot();
                 Debug.Log("changed to RobotScene");
                 break;
-            case GameState.decipherMiniGame:
+            case GameState.decipherMiniGameCafe:
+                break;
+            case GameState.decipherMiniGameElson:
                 break;
             case GameState.evadeMiniGame:
                 break;
@@ -66,6 +68,7 @@ public enum GameState
 {
     HumanScene,
     RobotScene,
-    decipherMiniGame,
+    decipherMiniGameCafe,
+    decipherMiniGameElson,
     evadeMiniGame
 }

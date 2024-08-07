@@ -11,9 +11,12 @@ public class CheckCode : MonoBehaviour
     [SerializeField] private TextMeshProUGUI decipherText;
     [SerializeField] private TMP_InputField inputTextField;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] public ICodeChecker codeChecker;
 
     private float currenttime;
     private float startingtime = 10.5f;
+
+    public bool finished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,20 +24,23 @@ public class CheckCode : MonoBehaviour
         currenttime = startingtime;
         notifierText.gameObject.SetActive(false);
         Debug.Log(currenttime);
+
+        // Initialize the code checker (can be set dynamically or through the inspector)
+        //codeChecker = new ElonMuskCodeChecker(); // Example initialization
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.activeInHierarchy)
+        if (gameObject.activeInHierarchy)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
             currenttime -= Time.unscaledDeltaTime;
             timerText.text = $"{currenttime:F0}s";
-            Debug.Log(currenttime);
-            if(currenttime < 0)
+            //Debug.Log(currenttime);
+            if (currenttime < 0)
             {
                 currenttime = 0;
                 StartCoroutine(CloseWindowAfter2());
@@ -42,20 +48,28 @@ public class CheckCode : MonoBehaviour
         }
     }
 
+    public void PlayMiniGame()
+    {
+        if (!finished)
+        {
+            this.gameObject.SetActive(true);
+        }
+    }    
     public void CheckCodeIfCorrect()
     {
-        switch (inputTextField.text)
+        if (codeChecker.CheckCode(inputTextField.text))
         {
-            case "Elon Musk":
-                Debug.Log("typed Elon Musk");
-                decipherText.text = inputTextField.text;
-                StartCoroutine(ShowNotifierText("Deciphered Complete!", Color.green));
-                StartCoroutine(CloseWindowAfter2());
-                break;
-            default:
-                inputTextField.text = "";
-                StartCoroutine(ShowNotifierText("Wrong Code", Color.red));
-                break;
+            StartCoroutine(ShowNotifierText(codeChecker.SuccessMessage, codeChecker.SuccessColor));
+            StartCoroutine(CloseWindowAfter2());
+            finished = true;
+            if (TutorialManager.GetInstance.currentTutorial.Order == 9 ||
+                TutorialManager.GetInstance.currentTutorial.Order == 15)
+                StartCoroutine(TutorialManager.GetInstance.TutorialSuccess());
+        }
+        else
+        {
+            inputTextField.text = "";
+            StartCoroutine(ShowNotifierText(codeChecker.FailureMessage, codeChecker.FailureColor));
         }
     }
 

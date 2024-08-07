@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32bee7343eece94b9cde03c2915bd9a, type: 3}
+  m_Name: TakePictureInShadowMoore
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: TakePictureInShadowMoore
+  displayName: Take Picture in ShadowMoore
+  clientName: Tutorial
+  location: ShadowMoore
+  description: title
+  difficulty: '*'
+  questPrerequisites:
+  - {fileID: 11400000, guid: 92b3d14f0ecbb9f40b62ea5dca93edbc, type: 2}
+  questStepPrefabs:
+  - {fileID: 6447778426905854403, guid: 2542c7f38c7ce6543844962ca41e48fb, type: 3}
+  MoneyReward: 5

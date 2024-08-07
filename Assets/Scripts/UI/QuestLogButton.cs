@@ -53,6 +53,10 @@ public class QuestLogButton : MonoBehaviour, ISelectHandler
         switch (state)
         {
             case QuestState.REQUIREMENTS_NOT_MET:
+                questButton.colors = changeButtonColor(questButton.colors, finishedColor);
+                ButtonText.text = "Req not Met";
+                questButton.interactable = false;
+                break;
             case QuestState.CAN_START:
                 questButton.colors = changeButtonColor(questButton.colors, initialColor);
                 ButtonText.text = "Accept";
@@ -92,7 +96,9 @@ public class QuestLogButton : MonoBehaviour, ISelectHandler
 
     private void ClickTutorial()
     {
-        if (TutorialManager.GetInstance.currentTutorial.Order == 6 || TutorialManager.GetInstance.currentTutorial.Order == 9)
+        if (TutorialManager.GetInstance.currentTutorial.Order == 6 || TutorialManager.GetInstance.currentTutorial.Order == 10 ||
+            TutorialManager.GetInstance.currentTutorial.Order == 11 || TutorialManager.GetInstance.currentTutorial.Order == 16 ||
+            TutorialManager.GetInstance.currentTutorial.Order == 17)
         {
             StartCoroutine(TutorialManager.GetInstance.TutorialSuccess());
         }

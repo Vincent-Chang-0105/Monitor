@@ -6,7 +6,8 @@ using UnityEngine;
 public class MiniGameManager : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private GameObject decipherMiniGame;
+    [SerializeField] private CheckCode decipherMiniGameCafe;
+    [SerializeField] private CheckCode decipherMiniGameElson;
     [SerializeField] private GameObject evadeMinigame;
 
     void Start()
@@ -21,6 +22,9 @@ public class MiniGameManager : MonoBehaviour
 
     private void GameEvents_onStateChange(GameState state)
     {
-        decipherMiniGame.SetActive(state == GameState.decipherMiniGame);
+        if (state == GameState.decipherMiniGameCafe)
+            decipherMiniGameCafe.PlayMiniGame();
+        if (state == GameState.decipherMiniGameElson)
+            decipherMiniGameElson.PlayMiniGame();
     }
 }
